@@ -6,20 +6,23 @@ import ScrollToTop from './components/layout/ScrollToTop';
 import FloatingWhatsApp from './components/ui/FloatingWhatsApp';
 import BackToTop from './components/ui/BackToTop';
 import PageTransition from './components/layout/PageTransition';
+import LenisProvider from './components/providers/LenisProvider';
+import SmartCursor from './components/white/ui/SmartCursor';
+import IntroAnimation from './components/white/ui/IntroAnimation';
 import { trackScrollDepth, resetScrollTracking, initOutboundLinkTracking, initBounceDetection, resetSessionTiming } from './lib/analytics';
 
 // Lazy load pages for performance
 const Home = lazy(() => import('./pages/HomeWhite'));
-const WebsitesPage = lazy(() => import('./pages/Websites'));
+const WebsitesPage = lazy(() => import('./pages/WebsitesWhite'));
 const SystemsPage = lazy(() => import('./pages/Systems'));
-const HostingPage = lazy(() => import('./pages/Hosting'));
-const Portfolio = lazy(() => import('./pages/Portfolio'));
-const Contact = lazy(() => import('./pages/Contact'));
+const HostingPage = lazy(() => import('./pages/HostingWhite'));
+const Portfolio = lazy(() => import('./pages/PortfolioWhite'));
+const Contact = lazy(() => import('./pages/ContactWhite'));
+const About = lazy(() => import('./pages/AboutWhite'));
 const Results = lazy(() => import('./pages/Results'));
 const AddOnsPage = lazy(() => import('./pages/AddOnsPage'));
 const Packages = lazy(() => import('./pages/Packages'));
 const Services = lazy(() => import('./pages/Services'));
-const About = lazy(() => import('./pages/About'));
 const BlomCosmetics = lazy(() => import('./pages/portfolio/BlomCosmetics'));
 const RecklessBearPage = lazy(() => import('./pages/portfolio/RecklessBearPage'));
 const AmeliVanZyl = lazy(() => import('./pages/portfolio/AmeliVanZyl'));
@@ -88,14 +91,18 @@ function App() {
   return (
     <HelmetProvider>
       <Router>
-        <ScrollToTop />
-        <div className="relative min-h-screen">
-          <Suspense fallback={<div className="min-h-screen" />}>
-            <AnimatedRoutes />
-          </Suspense>
-        </div>
-        <FloatingWhatsApp />
-        <BackToTop />
+        <LenisProvider>
+          <ScrollToTop />
+          <div className="relative min-h-screen">
+            <Suspense fallback={<div className="min-h-screen" />}>
+              <AnimatedRoutes />
+            </Suspense>
+          </div>
+          <IntroAnimation />
+          <SmartCursor />
+          <FloatingWhatsApp />
+          <BackToTop />
+        </LenisProvider>
       </Router>
     </HelmetProvider>
   );
